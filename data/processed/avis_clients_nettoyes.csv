@@ -1,0 +1,11 @@
+﻿id,avis,note,sentiment,longueur_avis
+1,Le produit est excellent et la livraison rapide,5,positif,47
+2,"Très déçu, le produit est arrivé cassé",1,negatif,38
+3,Produit correct mais livraison trop longue,3,neutre,42
+4,Excellent rapport qualité prix,5,positif,30
+5,Service client injoignable,1,negatif,26
+6,Le produit correspond à mes attentes,4,positif,36
+7,Qualité médiocre et prix trop élevé,2,negatif,35
+8,Livraison rapide mais emballage abîmé,3,neutre,37
+9,Très satisfait de mon achat,5,positif,27
+10,Le produit ne fonctionne pas,1,negatif,28

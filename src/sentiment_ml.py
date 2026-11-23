@@ -1,6 +1,11 @@
 import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,3 +43,25 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 print("\nDimensions de l'ensemble d'entraînement :", x_train.shape)
 print("Dimensions de l'ensemble de test :", x_test.shape)
 
+# Créer un pipeline de traitement du texte et de classification 
+modele = Pipeline([("tfidf", TfidfVectorizer()), ("regression_logistique", LogisticRegression(random_state=42, class_weight="balanced", max_iter=1000))])
+
+# Entraîner le modèle
+modele.fit(x_train, y_train)
+
+print("\nModèle entraîné avec succès !")
+
+# prédictions
+y_pred = modele.predict(x_test)
+
+# accurary
+print("Accuracy :", accuracy_score(y_test, y_pred))
+
+# Rapport de classification
+print("\nRapport de classification :")
+print(classification_report(y_test, y_pred))
+
+# matrice de confusion
+ConfusionMatrixDisplay.from_estimator(modele, x_test, y_test, display_labels=modele.classes_, cmap="Blues", xticks_rotation=45)
+plt.title("Matrice de confusion")
+plt.show()

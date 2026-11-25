@@ -65,12 +65,12 @@ print("\nMeilleurs hyperparamètres trouvés :", recherche.best_params_)
 y_pred = modele.predict(x_test)
 
 # dataframe pour les résultats
-resultats = pd.DataFrame({"avis": x_test, "sentiment_reel": y_test, "sentiment_pred": y_pred})
+resultats = pd.DataFrame({"avis": x_test, "sentiment_reel": y_test, "sentiment_pred_ml": y_pred})
 print("\nExemples de résultats :")
 print(resultats.head())
 
 # sélection des erreurs de prédiction
-erreurs = resultats[resultats["sentiment_reel"] != resultats["sentiment_pred"]]
+erreurs = resultats[resultats["sentiment_reel"] != resultats["sentiment_pred_ml"]]
 print("\nNombre d'erreurs de prédiction :", len(erreurs))
 print("\nExemples d'erreurs de prédiction :")
 for index, ligne in erreurs.head(5).iterrows():
@@ -78,7 +78,7 @@ for index, ligne in erreurs.head(5).iterrows():
     print("Index :", index)
     print("Avis :", ligne["avis"])
     print("Sentiment réel :", ligne["sentiment_reel"])
-    print("Sentiment prédit :", ligne["sentiment_pred"])
+    print("Sentiment prédit :", ligne["sentiment_pred_ml"])
 
 # accurary
 print("Accuracy :", accuracy_score(y_test, y_pred))
